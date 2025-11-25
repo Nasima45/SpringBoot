@@ -7,6 +7,8 @@ import com.Startup.Spring.Boot.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,6 +44,7 @@ public class JournalEntryControllerUserConnected {
     public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry js, @PathVariable String userName) {
 
         try {
+
               service.saveEntries(js, userName);
             return new ResponseEntity<>(js,HttpStatus.CREATED);
         } catch (Exception e) {
