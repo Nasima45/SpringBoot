@@ -28,6 +28,7 @@ public class SpringSecurityConfig {
 
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/userJournal/**","/user/**").authenticated()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().permitAll()
         );
 
@@ -36,11 +37,6 @@ public class SpringSecurityConfig {
 
 
         return http.build();
-
-    }
-
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsServiceIml).passwordEncoder(passwordEncoder());
 
     }
 

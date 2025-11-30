@@ -75,6 +75,7 @@ public class UserController {
 
         userInDb.setUserName(user.getUserName());
         userInDb.setPassword(user.getPassword());
+        userInDb.setRoles(user.getRoles());
 
         userService.saveNewUser(userInDb);
 
