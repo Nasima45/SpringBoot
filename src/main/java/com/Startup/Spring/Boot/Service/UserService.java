@@ -4,6 +4,8 @@ import com.Startup.Spring.Boot.Entity.User;
 import com.Startup.Spring.Boot.Exception.UserNotFoundException;
 import com.Startup.Spring.Boot.Repository.UserRepository;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +18,7 @@ public class UserService {
 
     @Autowired
     private UserRepository repository;
+    private static final Logger logger= LoggerFactory.getLogger(UserService.class);
     private static final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 
     public void saveUserEntries(User entry) {
@@ -38,6 +41,7 @@ public class UserService {
     public void deleteById(ObjectId id) {
         User user_id=  repository.findById(id).
                 orElseThrow(()->new UserNotFoundException("user not exist with this id: " + id));
+        logger.info("user id is {} :" ,String.valueOf(user_id));
         repository.delete(user_id);
     }
     public User findByUserName(String name){

@@ -3,6 +3,8 @@ package com.Startup.Spring.Boot.Service;
 import com.Startup.Spring.Boot.Entity.JournalEntry;
 import com.Startup.Spring.Boot.Entity.User;
 import com.Startup.Spring.Boot.Repository.JournalEntryRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ public class JournalEntryService {
     @Autowired
     private JournalEntryRepository repository;
     @Autowired UserService userService;
+
 
     public void saveEntries(JournalEntry entry, String userName) {
         User user= userService.findByUserName(userName);
